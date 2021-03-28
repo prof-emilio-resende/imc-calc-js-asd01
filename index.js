@@ -1,4 +1,3 @@
-
 function translateImc() {
   if (isNaN(this.imc)) return 'N/A';
 
@@ -19,7 +18,7 @@ function Person(height, weight) {
   this.speak = function(text) {
     console.log(this);
     console.log(this.constructor);
-    alert(text);
+    document.getElementById('imc').innerText = text;
   }
 }
 
@@ -36,10 +35,16 @@ Dietician.prototype = Object.create(Person.prototype);
 Dietician.prototype.constructor = Dietician;
 
 function calculateImc() {
-  var person1 = new Dietician(1.77, 88.0);
-  var person2 = new Dietician(1.90, 88.0);
+  var height = parseFloat(document.getElementById('altura').value);
+  var weight = parseFloat(document.getElementById('peso').value);
+
+  var person1 = new Dietician(height, weight);
   console.log('person1 is Person?');
   console.log(person1 instanceof Person);
   person1.speak(parseFloat(person1.imc).toFixed(2) + ' ' + translateImc.bind(person1)(imc));
-  person2.speak(parseFloat(person2.imc).toFixed(2) + ' ' + translateImc.bind(person2)(imc));
+}
+
+window.onload = function() {
+  var btn = document.querySelector('.data .form button');
+  btn.addEventListener('click', calculateImc);
 }
