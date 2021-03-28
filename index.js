@@ -1,4 +1,4 @@
-function translateImc() {
+var translateImc = function() {
   if (isNaN(this.imc)) return 'N/A';
 
   if (this.imc < 18.5) return 'magreza';
@@ -25,26 +25,33 @@ function Person(height, weight) {
 function Dietician(height, weight) {
   Person.call(this, height, weight);
   this.calculateImc = function() {
-    return this.weight / this.height ** 2;
+    this.imc = this.weight / this.height ** 2;
+    return this.imc;
   }
 
-  this.imc = this.calculateImc();
+  this.calculateImc();
 }
 
 Dietician.prototype = Object.create(Person.prototype);
 Dietician.prototype.constructor = Dietician;
 
-function calculateImc() {
-  var height = parseFloat(document.getElementById('altura').value);
-  var weight = parseFloat(document.getElementById('peso').value);
+function buildCalculateImc() {
+  var heightElement = document.getElementById('altura');
+  var weightElement = document.getElementById('peso');
+  var person = new Dietician(0.00, 0.00);
+  console.log('person is Person?');
+  console.log(person instanceof Person);
 
-  var person1 = new Dietician(height, weight);
-  console.log('person1 is Person?');
-  console.log(person1 instanceof Person);
-  person1.speak(parseFloat(person1.imc).toFixed(2) + ' ' + translateImc.bind(person1)(imc));
+  return function() {
+    person.height = parseFloat(heightElement.value);
+    person.weight = parseFloat(weightElement.value);
+    person.calculateImc();
+
+    person.speak(parseFloat(person.imc).toFixed(2) + ' ' + translateImc.bind(person)());
+  }
 }
 
 window.onload = function() {
   var btn = document.querySelector('.data .form button');
-  btn.addEventListener('click', calculateImc);
+  btn.addEventListener('click', buildCalculateImc());
 }
