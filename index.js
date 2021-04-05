@@ -1,4 +1,4 @@
-var imcController = new ImcController();
+var imcView = new ImcView();
 
 function calculateImc(evt) {
   var heightElem = document.querySelector("#altura");
@@ -11,11 +11,11 @@ function calculateImc(evt) {
   var weight = weightElem.value;
 
   var person = new Person(parseFloat(height), parseFloat(weight));
-  imcController.calculateImc(person);
+  imcView.update(person);
 }
 
 window.onload = function() {
   var btn = document.querySelector('.data .form button');
   btn.addEventListener('click', calculateImc);
-  imcController.getImcTable();
+  new ImcTableView();
 }
