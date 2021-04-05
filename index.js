@@ -1,3 +1,7 @@
+import ImcView from "./views/ImcView.js";
+import ImcTableView from "./views/ImcTableView.js";
+import Person from "./domain/Person.js";
+
 var imcView = new ImcView();
 
 function calculateImc(evt) {

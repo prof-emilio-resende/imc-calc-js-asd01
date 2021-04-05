@@ -1,4 +1,7 @@
-class ImcView extends ViewComponent {
+import ViewComponent from '../framework/ViewComponent.js';
+import ImcController from '../controller/ImcController.js';
+
+export default class ImcView extends ViewComponent {
     constructor() {
         super(document.getElementById("imc-view"), new ImcController(), {
             person: null,

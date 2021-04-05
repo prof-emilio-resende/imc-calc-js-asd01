@@ -1,4 +1,4 @@
-class ViewComponent {
+export default class ViewComponent {
     constructor(element, controller, initialState = {}) {
         if (!element) throw Error("No DOM element to bind!");
         this.element = element;
