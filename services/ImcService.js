@@ -3,12 +3,38 @@ import HttpClient from '../http/HttpClient.js';
 export default class ImcService {
     constructor() {
         this.hostname = "http://localhost:8080";
+        this.xhr = new HttpClient();
+        this.get = new Proxy(this.xhr.get, {
+            apply: function(target, thisArg, args) {
+                console.log('target');
+                console.log(target);
+                console.log('thisArg');
+                console.log(thisArg);
+                console.log('args');
+                console.log(args);
+                console.log('chamando...');
+                return target(...args);
+            }
+        });
+
+        this.post = new Proxy(this.xhr.post, {
+            apply: function(target, thisArg, args) {
+                console.log('target');
+                console.log(target);
+                console.log('thisArg');
+                console.log(thisArg);
+                console.log('args');
+                console.log(args);
+                console.log('chamando...');
+                return target(...args);
+            }
+        });
     }
 
     getImcTable() {
         var path = "/imc/table";
 
-        return HttpClient
+        return this
             .get(this.hostname, path)
             .then(rawObj =>
                 Object.keys(rawObj)
@@ -25,7 +51,7 @@ export default class ImcService {
     calculate(person) {
         var path = "/imc/calculate";
 
-        return HttpClient
+        return this
             .post(this.hostname, path, person.toObject())
             .then(rawObj => {
                 console.log(rawObj);

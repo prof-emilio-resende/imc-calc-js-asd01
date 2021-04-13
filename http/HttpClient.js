@@ -1,5 +1,5 @@
 export default class HttpClient {
-    static post(hostname, path, obj) {
+    post(hostname, path, obj) {
         var opt = {
             method: "POST",
             headers: {
@@ -12,7 +12,7 @@ export default class HttpClient {
             .then(res => res.json());
     }
 
-    static get(hostname, path) {
+    get(hostname, path) {
         var opt = {
             method: "GET",
             headers: {
