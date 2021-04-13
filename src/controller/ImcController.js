@@ -1,15 +1,14 @@
-import ImcService from '../services/ImcService.js';
-
 export default class ImcController {
     constructor() {
-        this.service = new ImcService();
     }
 
     async getImcTable() {
-        return await this.service.getImcTable();
+        const { default: ImcService } = await import('../services/ImcService.js');
+        return await new ImcService().getImcTable();
     }
 
     async calculateImc(person) {
-        return await this.service.calculate(person);
+        const { default: ImcService } = await import('../services/ImcService.js');
+        return await new ImcService().calculate(person);
     }
 }
