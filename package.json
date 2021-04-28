@@ -5,6 +5,7 @@
   "main": "app/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "ts-build": "tsc",
     "start": "webpack serve --mode development --config webpack.config.js --progress",
     "build-dev": "webpack --mode development --config webpack.config.js",
     "build-prd": "webpack --mode production --config webpack.config.js",
@@ -32,7 +33,8 @@
     "babel-loader": "^8.2.2",
     "core-js": "^3.9.1",
     "proxy-polyfill": "git@github.com:emiliowl/proxy-polyfill.git",
-    "whatwg-fetch": "^3.6.2"
+    "whatwg-fetch": "^3.6.2",
+    "typescript": "4.2.4"
   },
   "dependencies": {
     "@babel/runtime": "^7.13.10"

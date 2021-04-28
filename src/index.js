@@ -7,6 +7,8 @@ import ImcView from "./views/ImcView.js";
 import ImcTableView from "./views/ImcTableView.js";
 import Person from "./domain/Person.js";
 
+import { Hello } from "./hello"
+
 import './index.scss';
 
 var imcView = new ImcView();
@@ -26,6 +28,7 @@ function calculateImc(evt) {
 }
 
 window.onload = function() {
+  console.warn(new Hello().sayHi());
   var btn = document.querySelector('.data .form button');
   btn.addEventListener('click', calculateImc);
   new ImcTableView();

@@ -1,0 +1,4 @@
+{
+  "extends": "./base",
+  "files": ["src/hello.ts"]
+}
